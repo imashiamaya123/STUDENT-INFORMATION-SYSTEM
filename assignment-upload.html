@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assigment upload</title>
+    </head>
+    <body>
+        <header>
+            <h2>Upload Assignment</h2>
+        </header>
+
+        <div class="container">
+            <div class="card">
+
+                <label>Module</label>
+                <select>
+                    <option>Software Engeneering</option>
+                    <option>Database System</option>
+                    <option>Web Development</option>
+                </select>
+
+                <label>Assignment</label>
+                <select>
+                    <option>Assignment 01</option>
+                    <option>Assignment 02</option>
+                    <option>Assignment 03</option>
+                </select>
+
+                <label>Upload Files</label>
+                <input type="file">
+
+                <p class="deadline">Deadlines: 16 January 2026</p>
+
+                <button onclick="showUpload()">Upload</button>
+
+                <p id="statusMsg"></p>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>

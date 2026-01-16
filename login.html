@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Information System</title>
+    </head>
+    <body>
+        <header>
+            <h2>Student Information System</h2>
+        </header>
+
+        <div class="container">
+            <div class="card">
+                <h3>Login</h3>
+                <form id="logingForm">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+
+                    <select id="role">
+                        <option value="student">Student</option>
+                        <option value="lecturer">Lecturer</option>
+                        <option value="admin">Admin</option>
+                    </select>
+
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
