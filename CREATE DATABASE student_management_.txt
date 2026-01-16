@@ -1,0 +1,65 @@
+CREATE DATABASE student_management_system;
+USE student_management_system;
+
+
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    reg_no VARCHAR(20) UNIQUE NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(15),
+    date_of_birth DATE,
+    gender ENUM('Male','Female','Other'),
+    address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE lecturers (
+    lecturer_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(15),
+    department VARCHAR(100)
+);
+
+
+CREATE TABLE modules (
+    module_id INT AUTO_INCREMENT PRIMARY KEY,
+    module_code VARCHAR(20) UNIQUE NOT NULL,
+    module_name VARCHAR(100) NOT NULL,
+    credit INT,
+    lecturer_id INT,
+    FOREIGN KEY (lecturer_id) REFERENCES lecturers(lecturer_id)
+        ON DELETE SET NULL
+);
+
+
+CREATE TABLE assignments (
+    assignment_id INT AUTO_INCREMENT PRIMARY KEY,
+    module_id INT NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    due_date DATE,
+    max_marks INT,
+    FOREIGN KEY (module_id) REFERENCES modules(module_id)
+        ON DELETE CASCADE
+);
+
+
+CREATE TABLE assignment_submissions (
+    submission_id INT AUTO_INCREMENT PRIMARY KEY,
+    assignment_id INT NOT NULL,
+    student_id INT NOT NULL,
+    submission_date DATETIME,
+    file_path VARCHAR(255),
+    marks INT,
+    status ENUM('Submitted','Late','Not Submitted') DEFAULT 'Submitted',
+
+    FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE CASCADE,
+
+    UNIQUE (assignment_id, student_id)
+);
